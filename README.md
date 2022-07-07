@@ -9,25 +9,25 @@ DBSCAN을 파이썬으로 직접 구현하여 클러스터링해보았다.
 
  
 
-1. 이미 process 된 점일 때
+#### 1. 이미 process 된 점일 때
 
 가장 먼저, 방문하려는 점이 이미 process된 것으로 확인되는 경우가 있다. 이 때는 아무 작업도 하지 않고 넘어간다.
 
  
 
-2. process되지 않고, border point일 때
+#### 2. process되지 않고, border point일 때
 
 process되지 않은 점에 대해서는 일괄적으로 그 주변 점들 (neighbors)에 대한 탐색이 필요하다. 자기 자신을 포함한 이웃의 수가 minpoint를 넘지 않는다면, 해당 점은 outlier 또는 border point일 것이다. 이 때, 자기 주변에 core point가 있는 것이 확인되면 해당 점은 border이다. Border point임이 확인되면 그 점을 방문하고, 그 점에 대해 cluster를 부여한다. 단, 가장 처음으로 방문한 점이 border일 때는, cluster가 생성되기 이전이기 때문에, 아무 조치 없이 다음 점으로 넘어가야 할 것이다.
 
  
 
-3. process되지 않고, outlier일 때
+#### 3. process되지 않고, outlier일 때
 
 자기 자신을 포함한 이웃의 수가 minpoint를 넘지 않고, 주변에 core point도 존재하지 않는 경우다. 이 때는 해당 점을 방문하지 않고, 아무 조치 없이 넘어간다.
 
  
 
-4. process되지 않고, core일 때
+#### 4. process되지 않고, core일 때
 
 재귀적인 과정이 수행되는 경우다. 점을 방문하고, 그 점에 대해 cluster를 부여한다. 이후, 해당 core의 모든 이웃들에 대해 재귀적으로 dbscan을 수행한다.
 - - -
